@@ -13,6 +13,11 @@ Automatically add visitor as anonymous guest with userId
 mrt add accounts-guest
 ```
 
+then in a client accessible code
+```javascript
+Meteor.loginVisitor
+```
+
 and that's it!  You'll want to clean out the users db of old accounts
 
 

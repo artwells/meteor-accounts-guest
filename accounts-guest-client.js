@@ -3,7 +3,7 @@
 * manipulate their work 
 * 
 */
-Meteor.loginGuest = function (fn) {
+Meteor.createGuest = function (fn) {
   Accounts.createUser({password: Meteor.uuid(), username: Meteor.uuid(), profile: {guest: "guest", name: 'Guest'}});
 };
 
@@ -29,7 +29,9 @@ Meteor.user = function () {
 //no non-logged in users
 /* you might need to limit this to avoid flooding the user db */
 
-if (!Meteor.userId() && typeof Meteor.loginGuest() !== 'undefined') {
-  Meteor.loginGuest();
+Meteor.loginVisitor = function () {
+	if (!this.userId() && typeof Meteor.loginGuest() !== 'undefined') {
+	  Meteor.createGuest();
+	}
 }
 

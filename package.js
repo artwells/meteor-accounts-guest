@@ -10,4 +10,6 @@ Package.on_use(function (api) {
 });
 
 Package.on_test(function (api) {
+  api.use(['accounts-base', 'accounts-password', 'tinytest'], ['client','server']);
+  api.add_files('accounts-guest-tests.js', ['client']);
 });
