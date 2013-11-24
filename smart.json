@@ -1,0 +1,8 @@
+{
+    "name": "accounts-guest",
+    "description": "Automatically add visitor as anonymous guest with userId",
+    "homepage": "https://github.com/artwells/meteor-accounts-guest.git",
+    "author": "artwells (http://artwells.com)",
+    "version": "0.1",
+    "git": "https://github.com/artwells/meteor-accounts-guest"
+}
