@@ -30,7 +30,7 @@ Meteor.user = function () {
 /* you might need to limit this to avoid flooding the user db */
 
 Meteor.loginVisitor = function () {
-	if (!this.userId() && typeof Meteor.loginGuest() !== 'undefined') {
+	if (!this.userId()) {
 	  Meteor.createGuest();
 	}
 }
