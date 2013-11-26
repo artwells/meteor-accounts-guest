@@ -11,5 +11,8 @@ Package.on_use(function (api) {
 
 Package.on_test(function (api) {
   api.use(['accounts-base', 'accounts-password', 'tinytest'], ['client','server']);
-  api.add_files('accounts-guest-tests.js', ['client']);
+  api.add_files('accounts-guest-client.js', ['client','server']);
+  api.add_files('accounts-guest-server.js', 'server');
+  api.add_files('accounts-guest-client-tests.js', 'client');
+  api.add_files('accounts-guest-server-tests.js', 'server');
 });

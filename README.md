@@ -10,15 +10,23 @@ Automatically add visitor as anonymous guest with userId
 
 ##Installation
 ```sh
+mrt add accounts-base
+mrt add accounts-password
 mrt add accounts-guest
 ```
 
-then in a client accessible code
+then in client-only code
 ```javascript
-Meteor.loginVisitor
+Meteor.loginVisitor()
 ```
 
-and that's it!  You'll want to clean out the users db of old accounts
+
+optionally (to clean out old guest accounts) in server-only code
+```javascript
+Meteor.loginVisitor();
+```
+
+Now Meteor.userId() will be populated for each new visitor, including across reloads
 
 
 
