@@ -47,7 +47,7 @@ or
 /* clean out all guest accounts more than 2 hours old */ 
 var before = new Date();
 before.setHours(before.getHours() - 2);
-Accounts.removeOldGuests();
+Accounts.removeOldGuests(before);
 ```
 
 ##TODO
