@@ -1,8 +1,11 @@
 Package.describe({
-  summary: "Automatically add visitor as anonymous guest with userId"
+  summary: "Automatically add visitor as anonymous guest with userId",
+  version: "0.0.6",
+  git: "https://github.com/artwells/meteor-accounts-guest.git"
 });
 
 Package.on_use(function (api) {
+  api.versionsFrom("METEOR@0.9.0");
   api.use(['accounts-base', 'accounts-password'], 'client');
   api.use(['accounts-base'], 'server');
   api.add_files('accounts-guest-server.js', 'server');
