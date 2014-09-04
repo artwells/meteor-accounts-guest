@@ -1,6 +1,6 @@
 Package.describe({
   summary: "Automatically add visitor as anonymous guest with userId",
-  version: "0.0.6",
+  version: "0.1.1",
   git: "https://github.com/artwells/meteor-accounts-guest.git"
 });
 
