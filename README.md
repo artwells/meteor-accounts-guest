@@ -1,4 +1,4 @@
-meteor-queue
+accounts-guest
 ============
 
 Automatically add visitor as anonymous guest with userId
