@@ -5,7 +5,6 @@
 */
 Meteor.createGuest = function (fn) {
  res = Accounts.createUser({password: Meteor.uuid(), username: Meteor.uuid(), profile: {guest: "guest", name: 'Guest'}});
- console.log(res);
 };
 
 
