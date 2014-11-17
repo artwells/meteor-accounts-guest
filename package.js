@@ -1,11 +1,13 @@
 Package.describe({
+  name: 'dcsan:accounts-guest',
   summary: "Automatically add visitor as anonymous guest with userId",
-  version: "0.1.1",
-  git: "https://github.com/artwells/meteor-accounts-guest.git"
+  version: "0.1.2",
+  git: "https://github.com/dcsan/meteor-accounts-guest.git",
+  comment: "updated to 1.0"
 });
 
 Package.on_use(function (api) {
-  api.versionsFrom("METEOR@0.9.0");
+  api.versionsFrom("METEOR@1.0");
   api.use(['accounts-base', 'accounts-password'], 'client');
   api.use(['accounts-base'], 'server');
   api.add_files('accounts-guest-server.js', 'server');
