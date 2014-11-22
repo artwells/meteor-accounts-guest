@@ -6,3 +6,15 @@ Accounts.removeOldGuests = function (before) {
   res = Meteor.users.remove({createdAt: {$lte: before}, 'profile.guest': 'guest'});
   return res;
 };
+
+Meteor.methods
+ 'createGuest': ->
+    count = Meteor.users.find().count()
+
+    guest = {
+      username: "guest.#{count}"
+      email = "#{guestname}@xgram.org"
+      roles = ['admin']
+    }
+
+    return guest

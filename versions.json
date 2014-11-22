@@ -101,6 +101,10 @@
       "0.0.1"
     ],
     [
+      "dcsan:badmin",
+      "0.0.2"
+    ],
+    [
       "dcsan:dclib",
       "0.0.2"
     ],
@@ -145,6 +149,14 @@
       "0.0.1"
     ],
     [
+      "dcsan:reactive-ace",
+      "0.0.44"
+    ],
+    [
+      "dcsan:segment.io",
+      "4.0.0"
+    ],
+    [
       "dcsan:sly",
       "1.2.7_1"
     ],
@@ -167,6 +179,10 @@
     [
       "email",
       "1.0.4"
+    ],
+    [
+      "ephemer:reactive-datatables",
+      "1.0.1"
     ],
     [
       "facebook",
@@ -210,35 +226,35 @@
     ],
     [
       "iron:controller",
-      "1.0.0"
+      "1.0.3"
     ],
     [
       "iron:core",
-      "1.0.0"
+      "1.0.3"
     ],
     [
       "iron:dynamic-template",
-      "1.0.0"
+      "1.0.3"
     ],
     [
       "iron:layout",
-      "1.0.0"
+      "1.0.3"
     ],
     [
       "iron:location",
-      "1.0.1"
+      "1.0.3"
     ],
     [
       "iron:middleware-stack",
-      "1.0.0"
+      "1.0.3"
     ],
     [
       "iron:router",
-      "1.0.1"
+      "1.0.3"
     ],
     [
       "iron:url",
-      "1.0.0"
+      "1.0.3"
     ],
     [
       "jeremy:velocity-animate",
@@ -290,7 +306,7 @@
     ],
     [
       "meteorhacks:kadira",
-      "2.14.0"
+      "2.15.0"
     ],
     [
       "meteorhacks:kadira-binary-deps",
@@ -330,7 +346,7 @@
     ],
     [
       "mquandalle:jade",
-      "0.2.9"
+      "0.3.0"
     ],
     [
       "mrt:leaflet",
@@ -338,11 +354,11 @@
     ],
     [
       "mrt:moment",
-      "2.6.0"
+      "2.8.1"
     ],
     [
       "nemo64:bootstrap",
-      "3.3.0"
+      "3.3.0_1"
     ],
     [
       "nemo64:bootstrap-data",
@@ -402,7 +418,7 @@
     ],
     [
       "reywood:iron-router-ga",
-      "0.4.0"
+      "0.4.1"
     ],
     [
       "routepolicy",
@@ -429,6 +445,10 @@
       "1.0.1"
     ],
     [
+      "softwarerero:accounts-t9n",
+      "1.0.2"
+    ],
+    [
       "spacebars",
       "1.0.3"
     ],
@@ -439,6 +459,10 @@
     [
       "srp",
       "1.0.1"
+    ],
+    [
+      "strngs:comet",
+      "1.0.3"
     ],
     [
       "stylus",
@@ -465,6 +489,14 @@
       "1.0.2"
     ],
     [
+      "useraccounts:bootstrap",
+      "1.0.0"
+    ],
+    [
+      "useraccounts:core",
+      "1.2.3"
+    ],
+    [
       "webapp",
       "1.1.4"
     ],
@@ -473,8 +505,12 @@
       "1.0.1"
     ],
     [
-      "yogiben:admin",
-      "1.0.3"
+      "wizonesolutions:underscore-string",
+      "1.0.0"
+    ],
+    [
+      "zimme:iron-router-active",
+      "1.0.1"
     ]
   ],
   "pluginDependencies": [],

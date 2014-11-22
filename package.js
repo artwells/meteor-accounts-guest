@@ -10,8 +10,9 @@ Package.on_use(function (api) {
   api.versionsFrom("METEOR@1.0");
   api.use(['accounts-base', 'accounts-password'], 'client');
   api.use(['accounts-base'], 'server');
-  api.add_files('accounts-guest-server.js', 'server');
-  api.add_files('accounts-guest-client.js', 'client');
+  api.use(['coffeescript'], ['client','server']);
+  api.add_files('accounts-guest-server.coffee', 'server');
+  api.add_files('accounts-guest-client.coffee', 'client');
 });
 
 Package.on_test(function (api) {
