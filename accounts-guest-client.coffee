@@ -23,11 +23,11 @@ Meteor.startup ->
 
 Meteor.loginVisitor = () ->
   if (!this.userId())
-    console.log("creating guest")
-    Meteor.call('createGuest', createGuestCB)
+    console.log("guest | creating guest")
+    Meteor.call('createGuest', loginGuestCB)
 
 
-createGuestCB = (err, res) ->
-  # have to create client side to login
-  guest = Accounts.createUser(res)
-  console.log("createGuest:", res)
+loginGuestCB = (err, user) ->
+  # guest = Accounts.createUser(res)
+  Meteor.loginWithPassword(user.username, user.password)
+  console.log("guest | loginGuestCB:", user)

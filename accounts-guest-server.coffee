@@ -23,6 +23,6 @@ Meteor.methods
       profile: {guest: true}
       password: Meteor.uuid()
     }
-    # Accounts.createUser(guest)
+    Accounts.createUser(guest)
     console.log("createGuest", guest)
     return guest
