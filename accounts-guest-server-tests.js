@@ -1,3 +1,4 @@
+
 Tinytest.add(
   'guest - remove guests',
   function (test) {
@@ -5,16 +6,8 @@ Tinytest.add(
 	  before.setHours(before.getHours() - 100000);
 		Meteor.createGuest();
 		var username = Meteor.uuid();
-		Accounts.createUser({
-      password: Meteor.uuid(), 
-      username: username, 
-      email: "temp@temp.com",
-      profile: {guest: "guest", name: 'Guest'}
-    });
-		Meteor.users.update(
-      {username: username},
-      {$set: {createdAt: before}
-    });
+		Accounts.createUser({password: Meteor.uuid(), username: username, profile: {guest: "guest", name: 'Guest'}});
+		Meteor.users.update({username: username},{$set: {createdAt: before}});
 		usr = Meteor.users.findOne({username: username});
 		test.isFalse((typeof usr === 'undefined'), 'guest account not defined');
 		before.setHours(before.getHours() + 1);
