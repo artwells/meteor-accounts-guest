@@ -4,7 +4,7 @@ Tinytest.add(
   function (test) {
 	  var before = new Date();
 	  before.setHours(before.getHours() - 100000);
-		Meteor.createGuest();
+		Meteor.call('createGuest');
 		var username = Meteor.uuid();
 		Accounts.createUser({password: Meteor.uuid(), username: username, profile: {guest: "guest", name: 'Guest'}});
 		Meteor.users.update({username: username},{$set: {createdAt: before}});
@@ -16,4 +16,3 @@ Tinytest.add(
 		usr = Meteor.users.findOne({username: username});
 		test.isTrue((typeof usr === 'undefined'), 'guest account not deleted');}
  );
-
