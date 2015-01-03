@@ -51,6 +51,7 @@ Accounts.removeOldGuests(before);
 ```
 
 ##TODO
-- Make it possible to disable and call conditionally
+- Make it possible to disable and call conditionally by config
 - Allow guest session merged into new session if a visitor logs in
+- Allow merged session/other variables to be specified in config
 - Optionally force guest account when a user logs out/losses session
