@@ -14,8 +14,10 @@ meteor add accounts-base
 meteor add accounts-password
 meteor add accounts-guest
 ```
+and you are done!
 
-then in client-only code
+If you've changed AccountsGuest.forced to false, in client-only code add0
+
 ```javascript
 Meteor.loginVisitor()
 ```
@@ -33,7 +35,8 @@ Now Meteor.userId() will be populated for each new visitor, including across rel
 
 ##Options
 
-none yet
+* `AccountsGuest.enabled`,  default true. enables "Meteor.loginVisitor()".
+* `AccountsGuest.forced`,  default true. Does not require "Meteor.loginVisitor()". Will force recently logged out accounts into guest mode.
 
 ##Examples
 
@@ -51,7 +54,6 @@ Accounts.removeOldGuests(before);
 ```
 
 ##TODO
-- Make it possible to disable and call conditionally by config
+- tests for forced, and enabled options
 - Allow guest session merged into new session if a visitor logs in
 - Allow merged session/other variables to be specified in config
-- Optionally force guest account when a user logs out/losses session

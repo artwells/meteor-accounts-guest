@@ -22,7 +22,7 @@ Meteor.methods({
 			password: Meteor.uuid(),
 		};
 		Accounts.createUser(guest);
-//		console.log("createGuest" + guestname);
+		console.log("createGuest" + guestname);
 		return guest;
 	}
 });
