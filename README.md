@@ -16,11 +16,7 @@ meteor add accounts-guest
 ```
 and you are done!
 
-If you've changed AccountsGuest.forced to false, in client-only code add0
 
-```javascript
-Meteor.loginVisitor()
-```
 
 
 optionally (to clean out old guest accounts) in server-only code
@@ -29,14 +25,6 @@ Accounts.removeOldGuests([time before]);
 ```
 
 Now Meteor.userId() will be populated for each new visitor, including across reloads
-
-
-
-
-##Options
-
-* `AccountsGuest.enabled`,  default true. enables "Meteor.loginVisitor()".
-* `AccountsGuest.forced`,  default true. Does not require "Meteor.loginVisitor()". Will force recently logged out accounts into guest mode.
 
 ##Examples
 
@@ -52,6 +40,28 @@ var before = new Date();
 before.setHours(before.getHours() - 2);
 Accounts.removeOldGuests(before);
 ```
+
+
+
+##Options
+
+* `AccountsGuest.enabled`,  default true. Automatically logs in all visitors.
+* `AccountsGuest.forced`,  default true. Will force recently logged out accounts into guest mode.
+
+##Option Examples
+
+In code available to server, to temporarily or conditionally disable guest login
+```javascript
+AccountsGuest.enabled = false
+```
+
+In code available to client, to temporarily or conditionally disable guest login after user logout
+```javascript
+AccountsGuest.enabled = true
+```
+
+
+
 
 ##TODO
 - tests for forced, and enabled options

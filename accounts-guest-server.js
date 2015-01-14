@@ -13,6 +13,10 @@ Accounts.removeOldGuests = function (before) {
 Meteor.methods({
 	createGuest: function ()
 	{
+		/* if explicitly disabled, happily do nothing */
+		if (AccountsGuest.enabled === false){
+			return true;
+		}
 		count = Meteor.users.find().count() + 1
 		guestname = "guest-#" + count
 		guest = {
@@ -22,7 +26,7 @@ Meteor.methods({
 			password: Meteor.uuid(),
 		};
 		Accounts.createUser(guest);
-		console.log("createGuest" + guestname);
+//		console.log("createGuest" + guestname);
 		return guest;
 	}
 });

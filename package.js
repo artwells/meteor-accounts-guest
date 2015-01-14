@@ -10,15 +10,18 @@ Package.onUse(function (api) {
 	api.use(['accounts-base', 'accounts-password','deps'], 'client');
 	api.use(['accounts-base'], 'server');
 	api.add_files('accounts-guest.js', ['client','server']);
-	api.add_files(['accounts-guest-server.js','accounts-guest.js'], 'server');
+	api.export('AccountsGuest');
+	api.add_files('accounts-guest-server.js', 'server');
 	api.add_files('accounts-guest-client.js', 'client');
+
 });
 
 Package.onTest(function (api) {
 	api.versionsFrom("METEOR@0.9.0");
-	api.use(['accounts-base', 'accounts-password', 'tinytest'], ['client','server']);
-	api.add_files(['accounts-guest-client.js','accounts-guest.js'], ['client','server']);
+	api.use(['accounts-base', 'accounts-password', 'tinytest','deps'], ['client','server']);
+	api.add_files('accounts-guest.js', ['client','server']);
 	api.add_files('accounts-guest-server.js', 'server');
-	api.add_files('accounts-guest-client-tests.js', 'client');
+	api.add_files('accounts-guest-client.js', 'client');
 	api.add_files('accounts-guest-server-tests.js', 'server');
+	api.add_files('accounts-guest-client-tests.js', 'client');
 });
