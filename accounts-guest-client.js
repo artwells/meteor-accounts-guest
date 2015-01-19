@@ -55,13 +55,15 @@ if (Package.blaze) {
 		}
 	}
 
-Deps.autorun(function () {
+Meteor.startup(function(){
+		Deps.autorun(function () {
 
-	if (Meteor.userId()) {
-		//			console.log('this is '+Meteor.userId());
-	} else {
-		if (AccountsGuest.forced === true){
-			Meteor.loginVisitor();
-		}
-	}
+			if (Meteor.userId()) {
+				//			console.log('this is '+Meteor.userId());
+			} else {
+				if (AccountsGuest.forced === true){
+					Meteor.loginVisitor();
+				}
+			}
+		});
 });
