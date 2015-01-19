@@ -32,10 +32,10 @@ if (Package.blaze) {
 
 	//no non-logged in users
 	/* you might need to limit this to avoid flooding the user db */
-	Meteor.loginVisitor = function () {
+	Meteor.loginVisitor = function (email) {
 		AccountsGuest.forced = true;
 		if (!Meteor.userId()) {
-			Meteor.call('createGuest',function (error, result) {
+			Meteor.call('createGuest', email, function (error, result) {
 				if (error) {
 					console.log('Error in creating Guest ' + error);
 					return false;
@@ -55,13 +55,13 @@ if (Package.blaze) {
 		}
 	}
 
-		Deps.autorun(function () {
+Deps.autorun(function () {
 
-			if (Meteor.userId()) {
-				//			console.log('this is '+Meteor.userId());
-			} else {
-				if (AccountsGuest.forced === true){
-					Meteor.loginVisitor();
-				}
-			}
-		});
+	if (Meteor.userId()) {
+		//			console.log('this is '+Meteor.userId());
+	} else {
+		if (AccountsGuest.forced === true){
+			Meteor.loginVisitor();
+		}
+	}
+});
