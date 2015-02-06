@@ -43,7 +43,7 @@ Accounts.removeOldGuests(before);
 
 
 
-##Options
+##Options (Set in server code at start up)
 
 * `AccountsGuest.enabled`,  default true. Automatically logs in all visitors.
 * `AccountsGuest.forced`,  default true. Will force recently logged out accounts into guest mode.
