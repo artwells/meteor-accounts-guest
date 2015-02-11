@@ -12,7 +12,7 @@ Automatically add visitor as anonymous guest with userId
 ```sh
 meteor add accounts-base
 meteor add accounts-password
-meteor add accounts-guest
+meteor add artwells:accounts-guest
 ```
 and you are done!
 
