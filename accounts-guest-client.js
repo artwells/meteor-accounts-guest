@@ -30,25 +30,26 @@ if (Package.blaze) {
 
 //no non-logged in users
 /* you might need to limit this to avoid flooding the user db */
-Meteor.loginVisitor = function (email) {
+Meteor.loginVisitor = function (email, callback) {
     AccountsGuest.forced = true;
     if (!Meteor.userId()) {
         Meteor.call('createGuest', email, function (error, result) {
             if (error) {
                 console.log('Error in creating Guest ' + error);
-                return false;
+                return callback && callback(error);
             }
+
             /* if a simple "true" is returned, we are in a disabled mode */
-            if(result === true) {
-                return true;
-            }
+            if(result === true) return callback && callback();
+
             Meteor.loginWithPassword(result.email, result.password, function(error) {
                 if(error) {
                     console.log('Error logging in ' + error);
-                    return false;
+                    callback && callback(error);
+                } else {
+                    callback && callback();
                 }
             });
-            return true;
         });
     }
 }
