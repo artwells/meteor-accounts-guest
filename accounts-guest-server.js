@@ -13,6 +13,8 @@ Accounts.removeOldGuests = function (before) {
 Meteor.methods({
     createGuest: function (email)
     {
+        check(email, Match.OneOf(String, null, undefined));
+        
         /* if explicitly disabled, happily do nothing */
         if (AccountsGuest.enabled === false){
             return true;
