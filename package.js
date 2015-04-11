@@ -25,3 +25,7 @@ Package.onTest(function (api) {
     api.add_files('accounts-guest-server-tests.js', 'server');
     api.add_files('accounts-guest-client-tests.js', 'client');
 });
+
+Npm.depends({
+    'moniker': '0.1.2'
+});

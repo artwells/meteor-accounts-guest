@@ -60,7 +60,10 @@ In code available to client, to temporarily or conditionally disable guest login
 AccountsGuest.enabled = true
 ```
 
-
+In code available to server, to assign the guest a friendly nickname
+```javascript
+AccountsGuest.name = true
+```
 
 
 ##TODO

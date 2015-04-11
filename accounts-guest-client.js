@@ -18,7 +18,8 @@ if (Package.blaze) {
         if (user &&
             typeof user.profile !== 'undefined' &&
             typeof user.profile.guest !== 'undefined' &&
-            user.profile.guest){
+            user.profile.guest &&
+            AccountsGuest.name === false){
             // a guest login is not a real login where the user is authenticated.
             // This allows the account-base "Sign-in" to still appear
             return null;
