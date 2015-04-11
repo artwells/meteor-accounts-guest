@@ -32,7 +32,6 @@ Meteor.methods({
         } else {
           guestname = "guest-#" + Random.id()
         }
-        console.log("Using username: " + guestname);
 
         if (!email) {
             email = guestname + "@example.com";
