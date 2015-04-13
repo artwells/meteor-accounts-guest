@@ -1,3 +1,5 @@
+Moniker = Npm.require('moniker');
+
 Accounts.removeOldGuests = function (before) {
     if (typeof before === 'undefined') {
         before = new Date();
@@ -22,7 +24,15 @@ Meteor.methods({
         }
 
         //    count = Meteor.users.find().count() + 1
-        guestname = "guest-#" + Random.id()
+        if (AccountsGuest.name === true) {
+          guestname = Moniker.choose();
+          // Just in case, let's make sure this name isn't taken
+          while (Meteor.users.find({username:guestname}).count() > 0) {
+            guestname = Moniker.choose();
+          }
+        } else {
+          guestname = "guest-#" + Random.id()
+        }
 
         if (!email) {
             email = guestname + "@example.com";

@@ -5,3 +5,6 @@ if (typeof AccountsGuest.forced === "undefined") {
 if (typeof AccountsGuest.enabled === "undefined") {
 	AccountsGuest.enabled = true; /* on 'false'  Meteor.loginVisitor() will fail */
 }
+if (typeof AccountsGuest.name === "undefined") {
+  AccountsGuest.name = false; /* defaults to returning "null" for user's name */
+}
