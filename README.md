@@ -1,14 +1,14 @@
-accounts-guest
+# accounts-guest
 ============
 
 Automatically add visitor as anonymous guest with userId
 
-##Features
+## Features
 - each non-logged in visitor gets a userId, accessible via Accounts and Meteor:userId()
 - includes configurable cleanup function
 
 
-##Installation
+## Installation
 ```sh
 meteor add artwells:accounts-guest
 ```
@@ -24,7 +24,7 @@ Accounts.removeOldGuests([time before]);
 
 Now Meteor.userId() will be populated for each new visitor, including across reloads
 
-##Examples
+## Examples
 
 ```javascript
 /* clean out all guest accounts more than 24 hours old (default behavior) */
@@ -41,7 +41,7 @@ Accounts.removeOldGuests(before);
 
 
 
-##Options (Set in server code at start up)
+## Options (Set in server code at start up)
 
 * `AccountsGuest.enabled`,  default true. Automatically logs in all visitors.
 * `AccountsGuest.forced`,  default true. Will force recently logged out accounts into guest mode.
@@ -64,7 +64,7 @@ AccountsGuest.name = true
 ```
 
 
-##TODO
+## TODO
 - tests for forced, and enabled options
 - Allow guest session merged into new session if a visitor logs in
 - Allow merged session/other variables to be specified in config
