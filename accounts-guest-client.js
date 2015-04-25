@@ -45,7 +45,7 @@ Meteor.loginVisitor = function (email, callback) {
 
             Meteor.loginWithPassword(result.email, result.password, function(error) {
                 if(error) {
-                    console.log('Error logging in ' + error);
+                    console.log('rrError logging in ' + error);
                     callback && callback(error);
                 } else {
                     callback && callback();
