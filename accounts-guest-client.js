@@ -32,7 +32,6 @@ if (Package.blaze) {
 //no non-logged in users
 /* you might need to limit this to avoid flooding the user db */
 Meteor.loginVisitor = function (email, callback) {
-    AccountsGuest.forced = true;
     if (!Meteor.userId()) {
         Meteor.call('createGuest', email, function (error, result) {
             if (error) {
