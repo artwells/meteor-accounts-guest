@@ -35,7 +35,6 @@ Meteor.loginVisitor = function (email, callback) {
     if (!Meteor.userId()) {
         Meteor.call('createGuest', email, function (error, result) {
             if (error) {
-                console.log('Error in creating Guest ' + error);
                 return callback && callback(error);
             }
 
@@ -44,7 +43,6 @@ Meteor.loginVisitor = function (email, callback) {
 
             Meteor.loginWithPassword(result.email, result.password, function(error) {
                 if(error) {
-                    console.log('rrError logging in ' + error);
                     callback && callback(error);
                 } else {
                     callback && callback();
