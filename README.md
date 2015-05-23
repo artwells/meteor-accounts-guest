@@ -12,7 +12,17 @@ Automatically add visitor as anonymous guest with userId
 ```sh
 meteor add artwells:accounts-guest
 ```
-and you are done!
+Followed by
+```sh
+meteor add accounts-ui
+
+```
+or
+```sh
+meteor add ian:accounts-ui-bootstrap-3
+```
+or any other accounts-ui derivative.
+
 
 
 
