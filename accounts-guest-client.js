@@ -15,6 +15,8 @@ if (Package.blaze) {
      */
     Package.blaze.Blaze.Template.registerHelper('currentUser', function () {
         var user = Meteor.user();
+        if (user && _.isEmpty(user.services))
+          return null;
         if (user &&
             typeof user.profile !== 'undefined' &&
             typeof user.profile.guest !== 'undefined' &&
@@ -29,29 +31,26 @@ if (Package.blaze) {
     });
 }
 
-//no non-logged in users
-/* you might need to limit this to avoid flooding the user db */
 Meteor.loginVisitor = function (email, callback) {
     if (!Meteor.userId()) {
-        Meteor.call('createGuest', email, function (error, result) {
-            if (error) {
-                return callback && callback(error);
-            }
-
-            /* if a simple "true" is returned, we are in a disabled mode */
-            if(result === true) return callback && callback();
-
-            Meteor.loginWithPassword(result.email, result.password, function(error) {
+        Accounts.callLoginMethod({
+            methodArguments: [{
+                email: email,
+                createGuest: true
+            }],
+            userCallback: function (error, result) {
                 if(error) {
                     callback && callback(error);
                 } else {
                     callback && callback();
                 }
-            });
+            }
         });
     }
 }
 
+//no non-logged in users
+/* you might need to limit this to avoid flooding the user db */
 Meteor.startup(function(){
     Deps.autorun(function () {
         if (!Meteor.userId()) {

@@ -6,6 +6,7 @@ Automatically add visitor as anonymous guest with userId
 ## Features
 - each non-logged in visitor gets a userId, accessible via Accounts and Meteor:userId()
 - includes configurable cleanup function
+- supports truly anonymous guests which do not require accounts-password
 
 
 ## Installation
@@ -55,6 +56,9 @@ Accounts.removeOldGuests(before);
 
 * `AccountsGuest.enabled`,  default true. Automatically logs in all visitors.
 * `AccountsGuest.forced`,  default true. Will force recently logged out accounts into guest mode.
+* `AccountsGuest.name`,  default false. If true, assign the guest a friendly nickname.
+* `AccountsGuest.anonymous`,  default false. If true, do not require acccounts-password and make guests
+  anonymous (i.e. no auto-generated username and email).
 
 ##Option Examples
 
@@ -73,6 +77,11 @@ In code available to server, to assign the guest a friendly nickname
 AccountsGuest.name = true
 ```
 
+In code available to server, to not require acccounts-password and make guests
+  anonymous (i.e. no auto-generated username and email).:
+```javascript
+AccountsGuest.anonymous = true
+```
 
 ## TODO
 - tests for forced, and enabled options

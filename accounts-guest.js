@@ -8,3 +8,6 @@ if (typeof AccountsGuest.enabled === "undefined") {
 if (typeof AccountsGuest.name === "undefined") {
   AccountsGuest.name = false; /* defaults to returning "null" for user's name */
 }
+if (typeof AccountsGuest.anonymous === "undefined") {
+	AccountsGuest.anonymous = false; /* defaults to using guests with randomly generated usernames/emails */
+}

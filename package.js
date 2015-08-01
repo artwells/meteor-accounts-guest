@@ -7,8 +7,11 @@ Package.describe({
 
 Package.onUse(function (api) {
     api.versionsFrom("METEOR@0.9.0");
-    api.use(['accounts-base', 'accounts-password','deps', 'blaze@2.0.4'], 'client');
-    api.use(['accounts-base', 'accounts-password'], 'server');
+    api.use(['accounts-base', 'deps', 'blaze@2.0.4'], 'client');
+    api.use(['accounts-base'], 'server');
+     // accounts-password is only required if you want to pass an email to Accounts.loginVisitor()
+    api.use('accounts-password', 'server', { weak: true });
+    api.use('underscore', 'server');
     api.add_files('accounts-guest.js', ['client','server']);
     api.export('AccountsGuest');
     api.add_files('accounts-guest-server.js', 'server');
