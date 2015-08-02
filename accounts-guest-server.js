@@ -6,9 +6,31 @@ Accounts.removeOldGuests = function (before) {
         before.setHours(before.getHours() - 1);
     }
     res = Meteor.users.remove({createdAt: {$lte: before}, 'profile.guest': true});
-    //res = Meteor.users.remove( {'profile.guest': true});
     return res;
 };
+Accounts.registerLoginHandler("guest", function (options) {
+    if (AccountsGuest.enabled === false || !options || !options.createGuest || Meteor.userId())
+        return undefined;
+
+    var newUserId = null;
+
+    if (AccountsGuest.anonymous) {
+        if (options.email) {
+            throw new Error("Can't create a guest user with an email with AccountsGuest.anonymous == true.\n");
+        }
+        newUserId = Accounts.insertUserDoc(options, {profile: {guest: true}});
+    } else if (!Accounts.createUser) {
+        throw new Error("Can't create a guest user with falsey AccountsGuest.anonymous unless the accounts-password package is installed.\n" +
+            "Either set AccountsGuest.anonymous or run 'meteor add accounts-password'.");
+    } else {
+        var guestOptions = createGuestOptions(options.email);
+
+        newUserId = Accounts.createUser(guestOptions);
+    }
+    return {
+        userId: newUserId
+    };
+});
 
 /**
  *  drop guest when visitor logs in
@@ -27,7 +49,6 @@ Accounts.onLogin(function(par){
         GuestUsers.remove(guest._id);
     }
 });
-
 /* adapted from pull-request https://github.com/dcsan
 * See https://github.com/artwells/meteor-accounts-guest/commit/28cbbf0eca2d80f78925ac619abf53d0769c0d9d
 */
@@ -35,7 +56,7 @@ Meteor.methods({
     createGuest: function (email)
     {
         check(email, Match.OneOf(String, null, undefined));
-        
+
         /* if explicitly disabled, happily do nothing */
         if (AccountsGuest.enabled === false){
             return true;
@@ -62,8 +83,5 @@ Meteor.methods({
             profile: {guest: true},
             password: Meteor.uuid(),
         };
-        Accounts.createUser(guest);
-        //    console.log("createGuest" + guestname);
         return guest;
-    }
-});
+}
