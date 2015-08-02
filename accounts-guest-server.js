@@ -38,15 +38,17 @@ Accounts.registerLoginHandler("guest", function (options) {
  */
 GuestUsers = new Mongo.Collection('guestUsers');
 Accounts.onLogin(function(par){
-    if(par.user.username.indexOf('guest') !== -1){
+    if(par.user && par.user.username !== undefined && par.user.username.indexOf('guest') !== -1){
         if(!GuestUsers.findOne({connection_id: par.connection.id})){
             GuestUsers.insert({connection_id: par.connection.id, user_id: par.user._id});
         }
     }
     else if(par.type !== 'resume'){
         var guest = GuestUsers.findOne({connection_id: par.connection.id});
-        Meteor.users.remove(guest.user_id);
-        GuestUsers.remove(guest._id);
+        if (guest) {
+            Meteor.users.remove(guest.user_id);
+            GuestUsers.remove(guest._id);
+        }
     }
 });
 
