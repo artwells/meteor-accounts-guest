@@ -18,7 +18,7 @@ Package.onUse(function (api) {
 
 Package.onTest(function (api) {
     api.versionsFrom("METEOR@0.9.0");
-    api.use(['accounts-base', 'accounts-password', 'tinytest','deps'], ['client','server']);
+    api.use(['accounts-base', 'accounts-password', 'mongo', 'tinytest','deps'], ['client','server']);
     api.add_files('accounts-guest.js', ['client','server']);
     api.add_files('accounts-guest-server.js', 'server');
     api.add_files('accounts-guest-client.js', 'client');
