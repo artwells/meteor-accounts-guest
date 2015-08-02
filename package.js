@@ -7,9 +7,8 @@ Package.describe({
 
 Package.onUse(function (api) {
     api.versionsFrom("METEOR@0.9.0");
-    api.use(['accounts-base', 'deps', 'blaze@2.0.4'], 'client');
-    api.use(['accounts-base'], 'server');
-     // accounts-password is only required if you want to pass an email to Accounts.loginVisitor()
+    api.use(['accounts-base','deps', 'blaze@2.0.4'], 'client');
+    api.use(['accounts-base', 'mongo'], 'server');
     api.use('accounts-password', 'server', { weak: true });
     api.use('underscore', 'server');
     api.add_files('accounts-guest.js', ['client','server']);
@@ -21,7 +20,7 @@ Package.onUse(function (api) {
 
 Package.onTest(function (api) {
     api.versionsFrom("METEOR@0.9.0");
-    api.use(['accounts-base', 'accounts-password', 'tinytest','deps'], ['client','server']);
+    api.use(['accounts-base', 'accounts-password', 'mongo', 'tinytest','deps'], ['client','server']);
     api.add_files('accounts-guest.js', ['client','server']);
     api.add_files('accounts-guest-server.js', 'server');
     api.add_files('accounts-guest-client.js', 'client');

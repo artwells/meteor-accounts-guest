@@ -8,7 +8,6 @@ Accounts.removeOldGuests = function (before) {
     res = Meteor.users.remove({createdAt: {$lte: before}, 'profile.guest': true});
     return res;
 };
-
 Accounts.registerLoginHandler("guest", function (options) {
     if (AccountsGuest.enabled === false || !options || !options.createGuest || Meteor.userId())
         return undefined;
@@ -31,6 +30,24 @@ Accounts.registerLoginHandler("guest", function (options) {
     return {
         userId: newUserId
     };
+});
+
+/**
+ *  drop guest when visitor logs in
+ *
+ */
+GuestUsers = new Mongo.Collection('guestUsers');
+Accounts.onLogin(function(par){
+    if(par.user.username.indexOf('guest') !== -1){
+        if(!GuestUsers.findOne({connection_id: par.connection.id})){
+            GuestUsers.insert({connection_id: par.connection.id, user_id: par.user._id});
+        }
+    }
+    else if(par.type !== 'resume'){
+        var guest = GuestUsers.findOne({connection_id: par.connection.id});
+        Meteor.users.remove(guest.user_id);
+        GuestUsers.remove(guest._id);
+    }
 });
 
 /* adapted from pull-request https://github.com/dcsan
