@@ -38,23 +38,35 @@ Accounts.registerLoginHandler("guest", function (options) {
  */
 GuestUsers = new Mongo.Collection('guestUsers');
 Accounts.onLogin(function(par){
-    if(par.user.username.indexOf('guest') !== -1){
+    if(par.user && par.user.username !== undefined && par.user.username.indexOf('guest') !== -1){
         if(!GuestUsers.findOne({connection_id: par.connection.id})){
             GuestUsers.insert({connection_id: par.connection.id, user_id: par.user._id});
         }
     }
     else if(par.type !== 'resume'){
         var guest = GuestUsers.findOne({connection_id: par.connection.id});
-        Meteor.users.remove(guest.user_id);
-        GuestUsers.remove(guest._id);
+        if (guest) {
+            Meteor.users.remove(guest.user_id);
+            GuestUsers.remove(guest._id);
+        }
     }
 });
+
 /* adapted from pull-request https://github.com/dcsan
 * See https://github.com/artwells/meteor-accounts-guest/commit/28cbbf0eca2d80f78925ac619abf53d0769c0d9d
 */
 Meteor.methods({
     createGuest: function (email)
     {
+        var guest = createGuestOptions(email);
+        Accounts.createUser(guest);
+        //    console.log("createGuest" + guestname);
+        return guest;
+    }
+});
+
+
+function createGuestOptions(email) {
         check(email, Match.OneOf(String, null, undefined));
 
         /* if explicitly disabled, happily do nothing */
