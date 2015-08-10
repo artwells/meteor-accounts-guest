@@ -15,19 +15,26 @@ if (Package.blaze) {
      */
     Package.blaze.Blaze.Template.registerHelper('currentUser', function () {
         var user = Meteor.user();
-        if (user && _.isEmpty(user.services))
+        if (! user) {
           return null;
-        if (user &&
-            typeof user.profile !== 'undefined' &&
+        }
+        if (typeof user.profile !== 'undefined' &&
             typeof user.profile.guest !== 'undefined' &&
             user.profile.guest &&
             AccountsGuest.name === false){
             // a guest login is not a real login where the user is authenticated.
             // This allows the account-base "Sign-in" to still appear
             return null;
-        } else {
-            return Meteor.user();
         }
+        // If the user has a username, a profile.name, or at least one email address,
+        // then they aren't anonymous, so return them.
+        if (typeof(user.username) === 'string'
+            || user.profile && typeof(user.profile.name) === 'string'
+            || (user.emails && user.emails.length > 0
+                && typeof(user.emails[0].address) === 'string')) {
+          return user;
+        }
+        return null;
     });
 }
 
