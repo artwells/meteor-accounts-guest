@@ -32,6 +32,13 @@ Accounts.registerLoginHandler("guest", function (options) {
     };
 });
 
+
+LoginState.addSignedUpInterceptor(function (user) {
+    if (user.profile && user.profile.guest && AccountsGuest.name === false) {
+      user.loginStateSignedUp = false;
+    }
+});
+
 /**
  *  drop guest when visitor logs in
  *
