@@ -13,6 +13,8 @@ Package.onUse(function (api) {
     api.use('underscore', 'server');
     api.use('brettle:accounts-patch-ui@0.0.1');
     api.use('brettle:accounts-login-state@0.0.1');
+    api.use('brettle:accounts-add-service@0.3.0', ['client', 'server'], { weak: true });
+    api.use('brettle:accounts-multiple@0.3.0', ['client', 'server'], { weak: true });
     api.add_files('accounts-guest.js', ['client','server']);
     api.export('AccountsGuest');
     api.add_files('accounts-guest-server.js', 'server');
