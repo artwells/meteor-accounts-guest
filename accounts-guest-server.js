@@ -32,8 +32,42 @@ Accounts.registerLoginHandler("guest", function (options) {
     };
 });
 
+
+LoginState.addSignedUpInterceptor(function (user) {
+    if (user.profile && user.profile.guest && AccountsGuest.name === false) {
+      user.loginStateSignedUp = false;
+    }
+});
+
 /**
- *  drop guest when visitor logs in
+ *  set profile.guest to false when guest adds a service
+ *
+ */
+var bamPkg = Package['brettle:accounts-multiple'];
+if (bamPkg) {
+    bamPkg.AccountsMultiple.register({
+        // brettle:accounts-add-service will cause onSwitchFailure to be called
+        // when a service is added.
+        // The new service will have been added to the attempting user.
+        // In that case, we want to update profile.guest.
+        onSwitchFailure: function (attemptingUser, attempt) {
+            if (attemptingUser.profile && attemptingUser.profile.guest) {
+                // Hide profile.guest so it doesn't effect LoginState.signedUp()
+                delete attemptingUser.profile.guest;
+                var signedUp = LoginState.signedUp(attemptingUser);
+
+                attemptingUser.profile.guest = (! signedUp);
+                Meteor.users.update(attemptingUser._id, {
+                    $set: {
+                        "profile.guest": attemptingUser.profile.guest
+                    }
+                });
+            }
+        }
+    });
+}
+/**
+ *  set profile.guest: drop guest user when visitor logs in as another user
  *
  */
 GuestUsers = new Mongo.Collection('guestUsers');
@@ -82,7 +116,7 @@ function createGuestOptions(email) {
             guestname = Moniker.choose();
           }
         } else {
-          guestname = "guest-#" + Random.id()
+          guestname = "guest-#" + Random.id();
         }
 
         if (!email) {
