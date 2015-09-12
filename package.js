@@ -8,7 +8,7 @@ Package.describe({
 Package.onUse(function (api) {
     api.versionsFrom("METEOR@0.9.0");
     api.use(['accounts-base','deps', 'blaze@2.0.4'], 'client');
-    api.use(['accounts-base', 'mongo'], 'server');
+    api.use(['accounts-base', 'mongo@1.1.0'], 'server');
     api.use('accounts-password', 'server', { weak: true });
     api.use('underscore', 'server');
     api.use('brettle:accounts-patch-ui@0.0.1');
