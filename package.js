@@ -8,7 +8,7 @@ Package.describe({
 Package.onUse(function (api) {
     api.versionsFrom("METEOR@0.9.0");
     api.use(['accounts-base','deps', 'blaze@2.0.4'], 'client');
-    api.use(['accounts-base', 'mongo@1.1.0'], 'server');
+    api.use(['accounts-base', 'mongo@1.1.0', 'check', 'random'], 'server');
     api.use('accounts-password', 'server', { weak: true });
     api.use('underscore', 'server');
     api.use('brettle:accounts-patch-ui@0.0.1');
@@ -24,7 +24,7 @@ Package.onUse(function (api) {
 
 Package.onTest(function (api) {
     api.versionsFrom("METEOR@0.9.0");
-    api.use(['accounts-base', 'accounts-password', 'mongo', 'tinytest','deps'], ['client','server']);
+    api.use(['accounts-base', 'accounts-password', 'mongo', 'tinytest','deps','ddp'], ['client','server']);
     api.use('artwells:accounts-guest');
     api.add_files('accounts-guest-server-tests.js', 'server');
     api.add_files('accounts-guest-client-tests.js', 'client');
