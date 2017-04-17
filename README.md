@@ -60,7 +60,7 @@ Accounts.removeOldGuests(before);
 * `AccountsGuest.anonymous`,  default false. If true, do not require acccounts-password and make guests
   anonymous (i.e. no auto-generated username and email).
 
-##Option Examples
+## Option Examples
 
 In code available to server, to temporarily or conditionally disable guest login
 ```javascript
