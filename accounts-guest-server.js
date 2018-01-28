@@ -127,7 +127,7 @@ function createGuestOptions(email) {
             username: guestname,
             email: email,
             profile: {guest: true},
-            password: Meteor.uuid(),
+            password: Random.id(),
         };
         return guest;
 }
