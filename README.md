@@ -11,7 +11,7 @@ Automatically add visitor as anonymous guest with userId
 
 ## Installation
 ```sh
-meteor add artwells:accounts-guest
+meteor add baursn:accounts-guest
 ```
 Followed by
 ```sh
