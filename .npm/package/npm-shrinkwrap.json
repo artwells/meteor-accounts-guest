@@ -1,0 +1,10 @@
+{
+  "lockfileVersion": 1,
+  "dependencies": {
+    "moniker": {
+      "version": "0.1.2",
+      "resolved": "https://registry.npmjs.org/moniker/-/moniker-0.1.2.tgz",
+      "integrity": "sha1-hy37pXXc6o+gSlE1sT1fJL7MyX4="
+    }
+  }
+}

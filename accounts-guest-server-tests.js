@@ -6,8 +6,8 @@ Tinytest.add(
 	  var before = new Date();
 	  before.setHours(before.getHours() - 100000);
 		Meteor.call('createGuest');
-		var username = Meteor.uuid();
-		Accounts.createUser({password: Meteor.uuid(), username: username, profile: {guest: true, name: 'Guest'}});
+		var username = Random.id();
+		Accounts.createUser({password: Random.secret(), username: username, profile: {guest: true, name: 'Guest'}});
 		Meteor.users.update({username: username},{$set: {createdAt: before}});
 		usr = Meteor.users.findOne({username: username});
 		test.isFalse((typeof usr === 'undefined'), 'guest account not defined');

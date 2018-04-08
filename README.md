@@ -1,7 +1,9 @@
 # accounts-guest
 ============
 
-Automatically add visitor as anonymous guest with userId
+Automatically add visitor as anonymous guest with userId.
+
+Note: This is the new home of `accounts-guest`, which is compatible with meteor >= 1.6.1. For older versions see [`artwells:accounts-guest`](https://github.com/artwells/meteor-accounts-guest).
 
 ## Features
 - each non-logged in visitor gets a userId, accessible via Accounts and Meteor:userId()
@@ -11,7 +13,7 @@ Automatically add visitor as anonymous guest with userId
 
 ## Installation
 ```sh
-meteor add artwells:accounts-guest
+meteor add baursn:accounts-guest
 ```
 Followed by
 ```sh
