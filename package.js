@@ -1,6 +1,6 @@
 Package.describe({
     summary: "Automatically add visitor as anonymous guest with userId",
-    version: "0.1.17",
+    version: "0.1.18",
     name: "baursn:accounts-guest",
     git: "https://github.com/baursn/meteor-accounts-guest.git"
 });
@@ -8,7 +8,7 @@ Package.describe({
 Package.onUse(function (api) {
     api.versionsFrom("METEOR@1.6.1");
     api.use(['accounts-base'], 'client');
-    api.use(['accounts-base', 'check', 'random'], 'server');
+    api.use(['accounts-base', 'mongo', 'check', 'random'], 'server');
     api.use('accounts-password', 'server', { weak: true });
     api.use('underscore', 'server');
     api.use('brettle:accounts-patch-ui@0.0.1');
